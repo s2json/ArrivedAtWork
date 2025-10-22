@@ -13,11 +13,10 @@ class ArrivedAtWork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF23FA58)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF645199)),
         appBarTheme: AppBarTheme(
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,

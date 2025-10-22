@@ -45,38 +45,41 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(title: const Text('Arrived at Work')),
       body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-
-            // 실시간 시계
-            const CurrentTimeWidget(showSeconds: true, separator: ':'),
-            const SizedBox(height: 100),
-            // TODO: 오늘의 명언을 업데이트하는 기능 추가
-            const Text(
-              'The future starts today, not tomorrow.',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-
-            Lottie.asset(
-              'assets/walk cycling shoes.json',
-              width: widget.screenWidth * 0.9,
-            ),
-            ElevatedButton.icon(
-              label: const Text('출근시간 찍기!', style: TextStyle(fontSize: 24)),
-              icon: const Icon(Icons.verified_outlined, size: 34),
-              style: ButtonStyle(
-                padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: widget.screenWidth * 0.2,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            children: [
+              // 실시간 시계
+              const CurrentTimeWidget(showSeconds: true, separator: ':'),
+              // TODO: 오늘의 명언을 업데이트하는 기능 추가
+              const Text(
+                'The future starts today, not tomorrow.',
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              Lottie.asset(
+                'assets/walk cycling shoes.json',
+                width: widget.screenWidth * 0.7,
+              ),
+              ElevatedButton.icon(
+                label: const Text('출근시간 찍기!', style: TextStyle(fontSize: 24)),
+                icon: const Icon(
+                  Icons.verified_outlined,
+                  size: 34,
+                  color: Colors.green,
+                ),
+                style: ButtonStyle(
+                  padding: WidgetStateProperty.all(
+                    EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: widget.screenWidth * 0.1,
+                    ),
                   ),
                 ),
+                onPressed: _handleCheckIn,
               ),
-              onPressed: _handleCheckIn,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
