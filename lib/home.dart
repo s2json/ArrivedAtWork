@@ -1,6 +1,6 @@
+import 'package:arrived_at_work/utils/current_time_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:arrived_at_work/current_time_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.screenWidth});
@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
           content: Text(
             '출근이 완료되었습니다! ${now.hour}:${now.minute.toString().padLeft(2, '0')}',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
       );
@@ -47,13 +47,13 @@ class _HomeState extends State<Home> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
             // 실시간 시계
-            CurrentTimeWidget(showSeconds: true, separator: ':'),
-            SizedBox(height: 100),
+            const CurrentTimeWidget(showSeconds: true, separator: ':'),
+            const SizedBox(height: 100),
             // TODO: 오늘의 명언을 업데이트하는 기능 추가
-            Text(
+            const Text(
               'The future starts today, not tomorrow.',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
@@ -64,8 +64,8 @@ class _HomeState extends State<Home> {
               width: widget.screenWidth * 0.9,
             ),
             ElevatedButton.icon(
-              label: Text('출근시간 찍기!', style: TextStyle(fontSize: 24)),
-              icon: Icon(Icons.verified_outlined, size: 34),
+              label: const Text('출근시간 찍기!', style: TextStyle(fontSize: 24)),
+              icon: const Icon(Icons.verified_outlined, size: 34),
               style: ButtonStyle(
                 padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(
