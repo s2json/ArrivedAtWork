@@ -136,7 +136,7 @@ class _HomeState extends State<Home> {
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
+                              SelectableText(
                                 'Current Position\nLatitude: ${position.latitude}\nLongitude: ${position.longitude}',
                                 textAlign: TextAlign.center,
                               ),
