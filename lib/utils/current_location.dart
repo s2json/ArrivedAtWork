@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 
 /// Determine the current position of the device.
-Future<Position?> determinePosition() async {
+Future<Position> determinePosition() async {
   bool serviceEnabled;
   late LocationPermission permission;
   final Position position;
