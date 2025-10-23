@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "634635221293",
+    "project_id": "arrivedatwork",
+    "storage_bucket": "arrivedatwork.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634635221293:android:574e9be614c98823f1fba4",
+        "android_client_info": {
+          "package_name": "com.dgraphcorp.arrived_at_work"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHK86_GGnvaAN_m8_CnXSR_pLoAsvzAtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

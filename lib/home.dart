@@ -1,5 +1,7 @@
+import 'package:arrived_at_work/utils/current_location.dart';
 import 'package:arrived_at_work/utils/current_time_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 
 class Home extends StatefulWidget {
@@ -14,30 +16,51 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool isCheckingIn = false;
 
-  void _handleCheckIn() {
+  void _handleCheckIn() async {
     setState(() {
       isCheckingIn = true;
     });
-    // Add your check-in logic here
 
-    final now = DateTime.now();
-    print('출근 시간: $now');
+    // 현재 위도, 경도
+    final Position? currentPosition = await determinePosition();
+    final double? currentLatitude = currentPosition?.latitude;
+    final double? currentLongitude = currentPosition?.longitude;
 
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        isCheckingIn = false;
-      });
+    // 목표 지점
+    const double startLatitude = 37.485743;
+    const double startLongitude = 127.029160;
+
+    // 두 지점 간의 거리 계산 (m)
+    double distanceInMeters = Geolocator.distanceBetween(
+      startLatitude,
+      startLongitude,
+      currentLatitude!,
+      currentLongitude!,
+    );
+
+    if (!_inWorkLocation(distanceInMeters)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).colorScheme.secondary,
+        const SnackBar(
+          backgroundColor: Colors.redAccent,
           content: Text(
-            '출근이 완료되었습니다! ${now.hour}:${now.minute.toString().padLeft(2, '0')}',
+            '출근 지점에서 멀리 떨어져 있습니다. 다시 시도해주세요.',
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20),
           ),
         ),
       );
-    });
+      setState(() {
+        isCheckingIn = false;
+      });
+      return;
+    }
+
+    final now = DateTime.now();
+  }
+
+  bool _inWorkLocation(double distanceInMeters) {
+    // 반경 10미터 이내인지 확인
+    return distanceInMeters <= 10;
   }
 
   @override
@@ -57,10 +80,14 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              Lottie.asset(
-                'assets/walk cycling shoes.json',
-                width: widget.screenWidth * 0.7,
-              ),
+
+              const Placeholder(),
+
+              // TODO : 애니메이션 추가
+              // Lottie.asset(
+              //   'assets/walk cycling shoes.json',
+              //   width: widget.screenWidth * 0.7,
+              // ),
               ElevatedButton.icon(
                 label: const Text('출근시간 찍기!', style: TextStyle(fontSize: 24)),
                 icon: const Icon(
